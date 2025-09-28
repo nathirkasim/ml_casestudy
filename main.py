@@ -5,11 +5,11 @@ import re
 # --- 1. Load Data ---
 # Using the newly provided file 'simplified_job_roles.csv' for job data
 try:
-    jobs_df = pd.read_csv('simplified_job_roles.csv')
+    jobs_df = pd.read_csv('jobs.csv')
     # Assuming 'sample_user_data.csv' is available
     user_df = pd.read_csv('sample_user_data.csv') 
 except FileNotFoundError as e:
-    print(f"Error loading file: {e}. Please ensure 'simplified_job_roles.csv' and 'sample_user_data.csv' are uploaded and accessible.")
+    print(f"Error loading file: {e}. Please ensure 'jobs.csv' and 'sample_user_data.csv' are uploaded and accessible.")
     raise
 
 # --- 2. Data Preprocessing and Skill/Title Standardization Functions ---
