@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 
 # ---------------- CONFIG ----------------
 # NOTE: The API key must be dynamically provided in the runtime environment.
-GENAI_API_KEY = "AIzaSyCq4YBadZH47uz7nBDX2je2qvi9WtGuPr8"
+GENAI_API_KEY = "YOUR_API_KEY"
 RESUME_DIR = "resumes" # Assuming this directory and files are accessible
 JOBS_FILE = "jobs.csv" # Assuming this file is accessible
 OUTPUT_FILE = "consultant_job_skill_results.csv"
@@ -411,3 +411,4 @@ if not df_out.empty:
     print(df_out.to_string(index=False))
 else:
     print("No resumes were successfully processed.")
+
