@@ -1,40 +1,62 @@
-Prerequisites:
-Before running the script, ensure you have:
-Python 3.8+
-The following Python libraries installed:
-pip install pandas numpy sentence-transformers rapidfuzz PyPDF2 python-docx spacy google-generativeai
+Resume Analyzer – Quick Instruction Manual
+A Python tool that extracts, scores, and analyzes resumes using AI + ML, with optional Gemini 2.0 Flash support.
 
-Download the English NLP model for spaCy:
+1. How It Works
+The script automatically:
+Reads resumes (PDF/DOCX/TXT) from the resumes/ folder
+Extracts text
+Scores the resume (action verbs, skills, experience, metrics, sections, etc.)
+Generates improvement recommendations
+Matches resumes with jobs (optional)
+Saves results to CSV and JSON
+Stores training data and auto-trains ML models over time
+
+2. Folder Setup
+resume_analysis.py
+resumes/                 # Add your resume files here
+jobs.csv                 # Optional job list (job_role, required_skills)
+scoring_criteria.csv     # Scoring rules
+models/                  # Auto-saved ML models
+training_resumes.csv     # Auto-generated training data
+
+3. Install Requirements
+pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 
-Environment Setup
-1. Directory Structure
-Your project folder should look like this:
+4. Enable Gemini (Optional)
+Set API key:
+export GEMINI_API_KEY="your_key"
+If not provided, the script uses fallback extraction.
 
-📁 project_root/
- ├── skill_rec_cons.py
- ├── jobs.csv                # Job dataset with columns: job_role, required_skills
- ├── resumes/                # Folder containing resumes to process
- │    ├── resume1.pdf
- │    ├── resume2.docx
- │    └── ...
- └── consultant_job_skill_results.csv  # Output (auto-generated)
+5. Run the Analyzer
+python resume_analysis.py
+The script will:
+Analyze all resumes in resumes/
+Save results to:
+resume_analysis_results.csv
+resume_analysis_results_detailed.json
 
-2. API Key (Optional)
-To enable Gemini API-based recommendations, set your API key as an environment variable:
-Linux/Mac
-export GENAI_API_KEY="your_api_key_here"
+6. Output Highlights
+Each resume includes:
+Score, grade, quality
+Experience, skills, metrics, action verbs
+Recommendations
+Top job match (if jobs.csv is present)
 
-Windows (PowerShell)
-setx GENAI_API_KEY "your_api_key_here"
+7. Customize Scoring
+Edit scoring_criteria.csv to change:
+Word count ranges
+Skill weight
+Experience weight
+Action verb list
+Skills list
+Section keywords
+Grade thresholds
+No code changes needed.
 
-If the API key is missing, the script will still run using embedding-based fallback logic.
+8. Auto-Training
+As more resumes are processed, training data grows.
+Once 10+ samples exist, ML models auto-train and improve scoring accuracy.
 
-How to Run:
-Place all your resumes inside the resumes/ directory.
-Ensure your job dataset (jobs.csv) is properly formatted.
-
-Run the script:
-python skill_rec_cons.py
-Once processing completes, results will be saved in:
-consultant_job_skill_results.csv
+For More Details
+Refer to **resume_analysis.pdf** for complete documentation and deeper technical explanations.
