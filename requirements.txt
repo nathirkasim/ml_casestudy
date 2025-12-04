@@ -1,0 +1,11 @@
+pandas
+numpy
+spacy
+sentence-transformers
+scikit-learn
+PyPDF2
+python-docx
+google-generativeai
+joblib
+regex
+
